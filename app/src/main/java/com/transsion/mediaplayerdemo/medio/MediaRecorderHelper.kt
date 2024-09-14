@@ -5,7 +5,6 @@ import android.media.MediaRecorder
 import java.io.File
 
 object MediaRecorderHelper {
-
     fun prepareMediaRecorder(
         context: Context,
         audioSource: Int,
@@ -24,7 +23,14 @@ object MediaRecorderHelper {
             setAudioSource(audioSource)
             setVideoSource(videoSource)
             setOutputFormat(outputFormat)
-            setOutputFile(File(context.externalCacheDir, outputFile).absolutePath)
+
+            // 确保目录存在并设置输出文件
+            val outputFilePath = File(outputFile)
+            if (!outputFilePath.parentFile?.exists()!!) {
+                outputFilePath.parentFile?.mkdirs()
+            }
+            setOutputFile(outputFilePath.absolutePath)
+
             setVideoEncodingBitRate(videoEncodingBitRate)
             setVideoFrameRate(videoFrameRate)
             setVideoSize(videoSizeWidth, videoSizeHeight)

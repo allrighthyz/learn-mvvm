@@ -51,6 +51,7 @@ dependencies {
     implementation (libs.androidx.fragment.ktx)
     implementation (libs.androidx.appcompat.v131)
     implementation(libs.core)
+    implementation(libs.androidx.material3.android)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
