@@ -5,13 +5,25 @@
     <uses-feature
         android:name="android.hardware.camera"
         android:required="false" />
-
+    <!--RECORD_AUDIO -->
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <!-- CAMERA -->
     <uses-permission android:name="android.permission.CAMERA" />
-
+    <!--WRITE_EXTERNAL_STORAGE-->
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"
         android:maxSdkVersion="32"
         tools:ignore="ScopedStorage" />
+    <!--INTERNET-->
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <!--ACCESS_NETWORK_STATE-->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <!--ACCESS_WIFI_STATE-->
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+    <!--ACCESS_NETWORK_STATE-->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+
 
     <application
         android:allowBackup="true"
