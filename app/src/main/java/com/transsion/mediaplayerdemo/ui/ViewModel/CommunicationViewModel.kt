@@ -1,10 +1,14 @@
-package com.transsion.mediaplayerdemo.ViewModel
+package com.transsion.mediaplayerdemo.ui.ViewModel
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.transsion.mediaplayerdemo.communication.ClientCommunication
-import com.transsion.mediaplayerdemo.communication.ServerCommunication
+import androidx.lifecycle.viewModelScope
+import com.transsion.mediaplayerdemo.communication.client.ClientCommunication
+import com.transsion.mediaplayerdemo.communication.server.ServerCommunication
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 class CommunicationViewModel : ViewModel() {
     private val _messages = MutableLiveData<MutableList<String>>()
@@ -15,6 +19,7 @@ class CommunicationViewModel : ViewModel() {
 
     fun startServer(port: Int) {
         serverCommunication = ServerCommunication(port) { message ->
+            Log.d("ServerComm", "Callback received message: $message")
             receiveMessage(message.toString())
         }.apply {
             startCommunication()
@@ -30,10 +35,12 @@ class CommunicationViewModel : ViewModel() {
     }
 
     fun sendMessage(message: String) {
-        if (serverCommunication != null) {
-            serverCommunication?.sendMessage(message)
-        } else if (clientCommunication != null) {
-            clientCommunication?.sendMessage(message)
+        viewModelScope.launch(Dispatchers.IO) { // 在后台线程上执行
+            if (serverCommunication != null) {
+                serverCommunication?.sendMessage(message)
+            } else if (clientCommunication != null) {
+                clientCommunication?.sendMessage(message)
+            }
         }
         addMessageToLiveData(message)
     }
@@ -45,6 +52,7 @@ class CommunicationViewModel : ViewModel() {
     }
 
     fun receiveMessage(message: String) {
+        Log.d("ViewModel", "Received message: $message")
         addMessageToLiveData(message)
     }
 

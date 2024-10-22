@@ -1,4 +1,4 @@
-package com.transsion.mediaplayerdemo.fragment
+package com.transsion.mediaplayerdemo.ui.fragment
 
 import android.content.pm.PackageManager
 import android.os.Bundle
@@ -6,7 +6,7 @@ import android.view.*
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import com.transsion.mediaplayerdemo.ViewModel.CameraViewModel
+import com.transsion.mediaplayerdemo.ui.ViewModel.CameraViewModel
 import com.transsion.mediaplayerdemo.databinding.FragmentRecordBinding
 
 class RecordFragment : Fragment() {

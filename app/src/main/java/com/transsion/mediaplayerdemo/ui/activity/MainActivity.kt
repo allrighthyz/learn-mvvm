@@ -1,4 +1,4 @@
-package com.transsion.mediaplayerdemo.activity
+package com.transsion.mediaplayerdemo.ui.activity
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
@@ -6,7 +6,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.transsion.mediaplayerdemo.R
-import com.transsion.mediaplayerdemo.ViewModel.MainViewModel
+import com.transsion.mediaplayerdemo.ui.ViewModel.MainViewModel
 import com.transsion.mediaplayerdemo.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {

@@ -1,4 +1,4 @@
-package com.transsion.mediaplayerdemo.fragment
+package com.transsion.mediaplayerdemo.ui.fragment
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -8,7 +8,8 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.transsion.mediaplayerdemo.ViewModel.CommunicationViewModel
+import com.transsion.mediaplayerdemo.R
+import com.transsion.mediaplayerdemo.ui.ViewModel.CommunicationViewModel
 import com.transsion.mediaplayerdemo.adapter.MessageAdapter
 import com.transsion.mediaplayerdemo.databinding.FragmentCommunicationBinding
 
@@ -65,6 +66,36 @@ class CommunicationFragment : Fragment() {
             viewModel.startClient(ip, port)
             binding?.ipAddress?.visibility = View.VISIBLE
         }
+//        binding?.radioGroup?.setOnCheckedChangeListener { group, checkedId ->
+//            when (checkedId) {
+//                binding?.radioClient?.id -> {
+//                    val ip = binding?.ipAddress?.text.toString()
+//                    val portStr = binding?.portNumber?.text.toString()
+//                    val port = portStr.toIntOrNull()
+//                    if (ip.isEmpty()) {
+//                        Toast.makeText(context, "IP address cannot be empty", Toast.LENGTH_SHORT).show()
+//                        return@setOnCheckedChangeListener
+//                    }
+//                    if (port == null || port !in 1..65535) {
+//                        Toast.makeText(context, "Invalid port number", Toast.LENGTH_SHORT).show()
+//                        return@setOnCheckedChangeListener
+//                    }
+//                    viewModel.startClient(ip, port)
+//                    binding?.ipAddress?.visibility = View.VISIBLE
+//                }
+//                binding?.radioServer?.id -> {
+//                    val portStr = binding?.portNumber?.text.toString()
+//                    val port = portStr.toIntOrNull()
+//                    if (port == null || port !in 1..65535) {
+//                        Toast.makeText(context, "Invalid port number", Toast.LENGTH_SHORT).show()
+//                        return@setOnCheckedChangeListener
+//                    }
+//                    viewModel.startServer(port)
+//                    binding?.ipAddress?.visibility = View.GONE
+//                }
+//            }
+//        }
+
 
         binding?.sendButton?.setOnClickListener {
             val message = binding?.messageEditText?.text.toString()

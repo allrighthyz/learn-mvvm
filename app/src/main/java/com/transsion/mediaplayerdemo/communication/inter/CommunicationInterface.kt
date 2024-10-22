@@ -1,4 +1,4 @@
-package com.transsion.mediaplayerdemo.common
+package com.transsion.mediaplayerdemo.communication.inter
 
 interface CommunicationInterface {
 

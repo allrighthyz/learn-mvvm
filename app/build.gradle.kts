@@ -52,7 +52,7 @@ dependencies {
     implementation (libs.androidx.appcompat.v131)
     implementation(libs.core)
     implementation(libs.androidx.material3.android)
-
+    implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3")
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)

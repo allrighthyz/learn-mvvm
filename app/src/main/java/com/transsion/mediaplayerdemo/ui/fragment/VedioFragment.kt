@@ -1,4 +1,4 @@
-package com.transsion.mediaplayerdemo.fragment
+package com.transsion.mediaplayerdemo.ui.fragment
 
 import android.net.Uri
 import android.os.Bundle

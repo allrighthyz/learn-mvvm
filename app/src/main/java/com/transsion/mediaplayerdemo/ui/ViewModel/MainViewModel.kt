@@ -1,13 +1,13 @@
-package com.transsion.mediaplayerdemo.ViewModel
+package com.transsion.mediaplayerdemo.ui.ViewModel
 
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.transsion.mediaplayerdemo.R
-import com.transsion.mediaplayerdemo.fragment.CommunicationFragment
-import com.transsion.mediaplayerdemo.fragment.RecordFragment
-import com.transsion.mediaplayerdemo.fragment.VedioFragment
+import com.transsion.mediaplayerdemo.ui.fragment.CommunicationFragment
+import com.transsion.mediaplayerdemo.ui.fragment.RecordFragment
+import com.transsion.mediaplayerdemo.ui.fragment.VedioFragment
 
 class MainViewModel : ViewModel() {
 

@@ -1,4 +1,4 @@
-package com.transsion.mediaplayerdemo.ViewModel
+package com.transsion.mediaplayerdemo.ui.ViewModel
 
 import android.Manifest
 import android.app.Application
@@ -47,7 +47,10 @@ class CameraViewModel(application: Application) : AndroidViewModel(application) 
     private lateinit var currentVideoPath: String
     private var mediaRecorderPrepared = false
     val cameraAndAudioPermissionRequest = PermissionRequest(
-        permissions = arrayOf(Manifest.permission.CAMERA, Manifest.permission.RECORD_AUDIO),
+        permissions = arrayOf(
+                Manifest.permission.CAMERA,
+                Manifest.permission.RECORD_AUDIO
+        ),
         requestCode = 1,
         rationaleTitle = "需要相机和麦克风权限",
         rationaleMessage = "此应用需要相机和麦克风权限来录制视频和音频。请授予权限。"

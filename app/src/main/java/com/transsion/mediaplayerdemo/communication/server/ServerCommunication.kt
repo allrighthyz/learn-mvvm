@@ -1,7 +1,8 @@
-package com.transsion.mediaplayerdemo.communication
+package com.transsion.mediaplayerdemo.communication.server
 
 import android.util.Log
-import com.transsion.mediaplayerdemo.common.CommunicationInterface
+import com.transsion.mediaplayerdemo.communication.inter.CommunicationInterface
+import com.transsion.mediaplayerdemo.communication.strategy.MessageHandler
 import java.io.BufferedReader
 import java.io.IOException
 import java.io.InputStreamReader
@@ -10,11 +11,15 @@ import java.net.ServerSocket
 import java.net.Socket
 import java.util.Collections
 
-class ServerCommunication(private val serverPort: Int, param: (Any) -> Unit) : CommunicationInterface {
+class ServerCommunication(
+    private val serverPort: Int,
+    private val onMessageReceived: (String) -> Unit
+) : CommunicationInterface {
+
     private var serverSocket: ServerSocket? = null
-    private val clients = Collections.synchronizedList(mutableListOf<Socket>())
     private val clientHandlers = Collections.synchronizedList(mutableListOf<ClientHandler>())
     private var serverThread: Thread? = null
+    private val messageHandler: MessageHandler = ServerMessageHandler(onMessageReceived)
 
     override fun startCommunication() {
         serverThread = Thread {
@@ -26,17 +31,14 @@ class ServerCommunication(private val serverPort: Int, param: (Any) -> Unit) : C
                     Log.d("Server", "Client connected from ${clientSocket.inetAddress.hostAddress}")
                     val clientHandler = ClientHandler(clientSocket)
                     clientHandlers.add(clientHandler)
-                    // 使用已经创建的 clientHandler 实例启动线程
                     Thread(clientHandler).start()
                 }
             } catch (e: IOException) {
                 Log.e("Server", "Server failed to start on port $serverPort", e)
-                e.printStackTrace()
             }
         }
         serverThread?.start()
     }
-
 
     override fun stopCommunication() {
         serverThread?.interrupt()
@@ -45,17 +47,15 @@ class ServerCommunication(private val serverPort: Int, param: (Any) -> Unit) : C
     }
 
     override fun sendMessage(message: String) {
-        // Broadcast message to all clients
-        clientHandlers.forEach { clientHandler ->
-            clientHandler.sendMessage(message)
-        }
+        Log.d("Server", "Broadcasting message to clients: $message")
+        clientHandlers.forEach { it.sendMessage(message) }
     }
 
     override fun onMessageReceived(message: String) {
-        // Handle received message
+        messageHandler.handleMessage(message)
     }
 
-    // ClientHandler 内部类，处理客户端连接的线程
+    // ClientHandler handles individual client connections
     private inner class ClientHandler(private val clientSocket: Socket) : Runnable {
         private val input = BufferedReader(InputStreamReader(clientSocket.getInputStream()))
         private val output = PrintWriter(clientSocket.getOutputStream(), true)
@@ -64,11 +64,14 @@ class ServerCommunication(private val serverPort: Int, param: (Any) -> Unit) : C
             try {
                 var message: String?
                 while (input.readLine().also { message = it } != null) {
-                    message?.let { broadcastMessage(it) }
+                    message?.let {
+                        messageHandler.handleMessage(it)
+                        broadcastMessage(it)
+                    }
+                    Log.d("Server", "Message from client: $message")
                 }
             } catch (e: IOException) {
                 Log.e("Server", "Error handling client connection", e)
-                e.printStackTrace()
             } finally {
                 stopClientHandler()
             }
@@ -76,9 +79,8 @@ class ServerCommunication(private val serverPort: Int, param: (Any) -> Unit) : C
 
         fun sendMessage(message: String) {
             if (!clientSocket.isClosed) {
-                PrintWriter(clientSocket.getOutputStream(), true).use { writer ->
-                    writer.println(message)
-                }
+                Log.d("Server", "Sending message to client: $message")
+                output.println(message)
             }
         }
 
@@ -89,11 +91,12 @@ class ServerCommunication(private val serverPort: Int, param: (Any) -> Unit) : C
                 clientSocket.close()
                 clientHandlers.remove(this)
             } catch (e: IOException) {
-                e.printStackTrace()
+                Log.e("Server", "Error closing client handler", e)
             }
         }
 
         private fun broadcastMessage(message: String) {
+            Log.d("Server", "Broadcasting message: $message")
             clientHandlers.forEach { it.sendMessage(message) }
         }
     }
