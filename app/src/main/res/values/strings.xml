@@ -2,4 +2,33 @@
     <string name="app_name">MediaPlayerDemo</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="tile_label">Battery Status</string>
+    <string name="battery_status_title">Battery Status</string>
+    <string name="battery_status_message">Current battery level: %1$d%%</string>
+    <string name="ok">OK</string>
+
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/white</item>
+        <item name="colorPrimaryDark">@color/black</item>
+        <item name="colorAccent">@color/black</item>
+    </style>
+
+    <!-- Dialog theme -->
+    <style name="Theme.AppCompat.Dialog" parent="Theme.AppCompat.Light.Dialog">
+        <!-- Customize your dialog theme here. -->
+    </style>
+
+    <!-- Transparent theme for dialog activity -->
+    <style name="Theme.Transparent" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:backgroundDimEnabled">false</item>
+    </style>
+
 </resources>

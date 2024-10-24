@@ -4,38 +4,51 @@
 
     <uses-feature
         android:name="android.hardware.camera"
-        android:required="false" />
-    <!--RECORD_AUDIO -->
-    <uses-permission android:name="android.permission.RECORD_AUDIO" />
-    <!-- CAMERA -->
-    <uses-permission android:name="android.permission.CAMERA" />
-    <!--WRITE_EXTERNAL_STORAGE-->
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+        android:required="false" /> <!-- RECORD_AUDIO -->
+    <uses-permission android:name="android.permission.RECORD_AUDIO" /> <!-- CAMERA -->
+    <uses-permission android:name="android.permission.CAMERA" /> <!-- WRITE_EXTERNAL_STORAGE -->
+    <uses-permission
+        android:name="android.permission.WRITE_EXTERNAL_STORAGE"
         android:maxSdkVersion="32"
-        tools:ignore="ScopedStorage" />
-    <!--INTERNET-->
-    <uses-permission android:name="android.permission.INTERNET" />
-
-    <!--ACCESS_NETWORK_STATE-->
+        tools:ignore="ScopedStorage" /> <!-- INTERNET -->
+    <uses-permission android:name="android.permission.INTERNET" /> <!-- ACCESS_NETWORK_STATE -->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" /> <!-- ACCESS_WIFI_STATE -->
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" /> <!-- ACCESS_NETWORK_STATE -->
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <!--ACCESS_WIFI_STATE-->
-    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
-    <!--ACCESS_NETWORK_STATE-->
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-
-
+    <uses-permission android:name="android.permission.BIND_QUICK_SETTINGS_TILE"
+        tools:ignore="ProtectedPermissions" />
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
 
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
+        android:enableOnBackInvokedCallback="true"
         android:fullBackupContent="@xml/backup_rules"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MediaPlayerDemo"
-        android:enableOnBackInvokedCallback="true"
-        tools:targetApi="31">
+        tools:targetApi="tiramisu">
+
+        <activity
+            android:name=".ui.activity.BatteryDialogActivity"
+            android:theme="@style/Theme.Transparent"
+            android:excludeFromRecents="true"
+            android:taskAffinity=""
+            android:launchMode="singleTask"
+            android:finishOnTaskLaunch="true"/>
+
+        <service
+            android:name=".service.IconService"
+            android:enabled="true"
+            android:exported="true"
+            android:permission="android.permission.BIND_QUICK_SETTINGS_TILE">
+            <intent-filter>
+                <action android:name="android.service.quicksettings.action.QS_TILE" />
+            </intent-filter>
+        </service>
+
         <activity
             android:name=".ui.activity.MainActivity"
             android:exported="true">
