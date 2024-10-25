@@ -14,7 +14,6 @@
     <uses-permission android:name="android.permission.INTERNET" /> <!-- ACCESS_NETWORK_STATE -->
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" /> <!-- ACCESS_WIFI_STATE -->
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" /> <!-- ACCESS_NETWORK_STATE -->
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.BIND_QUICK_SETTINGS_TILE"
         tools:ignore="ProtectedPermissions" />
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>

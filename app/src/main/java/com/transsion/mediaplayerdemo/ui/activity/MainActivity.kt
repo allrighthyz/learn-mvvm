@@ -8,6 +8,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.transsion.mediaplayerdemo.R
 import com.transsion.mediaplayerdemo.ui.ViewModel.MainViewModel
 import com.transsion.mediaplayerdemo.databinding.ActivityMainBinding
+import com.transsion.mediaplayerdemo.ui.splash.SplashFragment
 
 class MainActivity : AppCompatActivity() {
 
@@ -20,6 +21,13 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         viewModel = ViewModelProvider(this)[MainViewModel::class.java]
+
+        // 显示启动动画
+        if (savedInstanceState == null) {
+            supportFragmentManager.beginTransaction()
+                .replace(R.id.fragment_container, SplashFragment())
+                .commit()
+        }
 
         // 观察ViewModel中的Fragment变化
         viewModel.currentFragment.observe(this, Observer { fragment ->
@@ -42,6 +50,12 @@ class MainActivity : AppCompatActivity() {
         supportFragmentManager.beginTransaction()
             .replace(R.id.fragment_container, fragment)
             .commit()
+    }
+    /**
+     * 导航到主界面
+     */
+    fun navigateToMain() {
+        viewModel.setFragment(R.id.navigation_vedio)
     }
 }
 

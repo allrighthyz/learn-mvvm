@@ -6,10 +6,14 @@
         android:title="Vedio" />
     <item
         android:id="@+id/navigation_record"
-        android:icon="@android:drawable/presence_video_busy"
+        android:icon="@android:drawable/radiobutton_on_background"
         android:title="Next" />
     <item
         android:id="@+id/navigation_communication"
-        android:icon="@android:drawable/presence_video_away"
+        android:icon="@android:drawable/sym_action_chat"
         android:title="Last" />
+    <item
+        android:id="@+id/navigation_add"
+        android:icon="@android:drawable/presence_invisible"
+        android:title="add" />
 </menu>

@@ -5,6 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.transsion.mediaplayerdemo.R
+import com.transsion.mediaplayerdemo.ui.fragment.AddFragment
 import com.transsion.mediaplayerdemo.ui.fragment.CommunicationFragment
 import com.transsion.mediaplayerdemo.ui.fragment.RecordFragment
 import com.transsion.mediaplayerdemo.ui.fragment.VedioFragment
@@ -21,6 +22,7 @@ class MainViewModel : ViewModel() {
             R.id.navigation_vedio -> VedioFragment()
             R.id.navigation_record -> RecordFragment()
             R.id.navigation_communication -> CommunicationFragment()
+            R.id.navigation_add -> AddFragment()
             else -> throw IllegalArgumentException("Unknown navigation item")
         }
         _currentFragment.value = fragment
