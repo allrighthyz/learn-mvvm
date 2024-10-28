@@ -6,6 +6,12 @@
     <string name="battery_status_title">Battery Status</string>
     <string name="battery_status_message">Current battery level: %1$d%%</string>
     <string name="ok">OK</string>
+    <string name="add">添加</string>
+    <string name="user_email">Email</string>
+    <string name="user_name">Name</string>
+    <string name="select_image">Select Image</string>
+    <string name="user_phone">Phone</string>
+    <string name="user_pic">user_pic</string>
 
 
     <!-- Base application theme. -->

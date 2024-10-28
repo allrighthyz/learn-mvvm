@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/bottom_nav_graph"
+    app:startDestination="@id/navigation_vedio">
+
+    <fragment
+        android:id="@+id/navigation_vedio"
+        android:name="com.transsion.mediaplayerdemo.ui.fragment.VedioFragment"
+        android:label="fragment_vedio"
+        tools:layout="@layout/fragment_vedio" >
+        <action
+            android:id="@+id/action_vedioFragment_to_recordFragment"
+            app:destination="@id/navigation_record" />
+    </fragment>
+    <fragment
+        android:id="@+id/navigation_record"
+        android:name="com.transsion.mediaplayerdemo.ui.fragment.RecordFragment"
+        android:label="fragment_record"
+        tools:layout="@layout/fragment_record" >
+        <action
+            android:id="@+id/action_recordFragment_to_communicationFragment"
+            app:destination="@id/navigation_communication" />
+    </fragment>
+    <fragment
+        android:id="@+id/navigation_communication"
+        android:name="com.transsion.mediaplayerdemo.ui.fragment.CommunicationFragment"
+        android:label="fragment_communication"
+        tools:layout="@layout/fragment_communication" >
+        <action
+            android:id="@+id/action_communicationFragment_to_addFragment"
+            app:destination="@id/navigation_add" />
+    </fragment>
+    <fragment
+        android:id="@+id/navigation_add"
+        android:name="com.transsion.mediaplayerdemo.ui.fragment.AddFragment"
+        android:label="fragment_add"
+        tools:layout="@layout/fragment_add" />
+</navigation>
