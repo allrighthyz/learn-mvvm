@@ -1,4 +1,4 @@
-package com.transsion.mediaplayerdemo.ui.ViewModel
+package com.transsion.mediaplayerdemo.ui.viewModel
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

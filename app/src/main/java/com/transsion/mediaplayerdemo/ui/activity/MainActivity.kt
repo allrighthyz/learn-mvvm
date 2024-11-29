@@ -8,7 +8,7 @@ import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import androidx.navigation.ui.NavigationUI
 import com.transsion.mediaplayerdemo.R
-import com.transsion.mediaplayerdemo.ui.ViewModel.MainViewModel
+import com.transsion.mediaplayerdemo.ui.viewModel.MainViewModel
 import com.transsion.mediaplayerdemo.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {

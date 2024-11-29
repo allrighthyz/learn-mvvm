@@ -1,4 +1,4 @@
-package com.transsion.mediaplayerdemo.ui.ViewModel
+package com.transsion.mediaplayerdemo.ui.viewModel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
@@ -11,6 +11,6 @@ class UserViewModelFactory(private val repository: UserRepository) : ViewModelPr
             @Suppress("UNCHECKED_CAST")
             return AddViewModel(repository) as T
         }
-        throw IllegalArgumentException("Unknown ViewModel class")
+        throw IllegalArgumentException("Unknown viewModel class")
     }
 }

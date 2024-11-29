@@ -31,6 +31,7 @@ class MessageAdapter : RecyclerView.Adapter<MessageAdapter.MessageViewHolder>() 
         return messages.size
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     fun updateMessages(newMessages: List<String>) {
         Log.d("Adapter", "Updating messages $messages")
         messages.clear()

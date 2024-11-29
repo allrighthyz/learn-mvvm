@@ -8,8 +8,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.transsion.mediaplayerdemo.R
-import com.transsion.mediaplayerdemo.ui.ViewModel.CommunicationViewModel
+import com.transsion.mediaplayerdemo.ui.viewModel.CommunicationViewModel
 import com.transsion.mediaplayerdemo.adapter.MessageAdapter
 import com.transsion.mediaplayerdemo.databinding.FragmentCommunicationBinding
 
@@ -29,14 +28,14 @@ class CommunicationFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        // Initialize ViewModel
+        // Initialize viewModel
         viewModel = ViewModelProvider(this)[CommunicationViewModel::class.java]
 
         // Setup RecyclerView with View Binding
         binding?.chatRecyclerView?.layoutManager = LinearLayoutManager(context)
         binding?.chatRecyclerView?.adapter = messageAdapter
 
-        // Observe LiveData from ViewModel
+        // Observe LiveData from viewModel
         viewModel.messages.observe(viewLifecycleOwner) { messages ->
             messages?.let {
                 messageAdapter.updateMessages(it)
@@ -66,37 +65,6 @@ class CommunicationFragment : Fragment() {
             viewModel.startClient(ip, port)
             binding?.ipAddress?.visibility = View.VISIBLE
         }
-//        binding?.radioGroup?.setOnCheckedChangeListener { group, checkedId ->
-//            when (checkedId) {
-//                binding?.radioClient?.id -> {
-//                    val ip = binding?.ipAddress?.text.toString()
-//                    val portStr = binding?.portNumber?.text.toString()
-//                    val port = portStr.toIntOrNull()
-//                    if (ip.isEmpty()) {
-//                        Toast.makeText(context, "IP address cannot be empty", Toast.LENGTH_SHORT).show()
-//                        return@setOnCheckedChangeListener
-//                    }
-//                    if (port == null || port !in 1..65535) {
-//                        Toast.makeText(context, "Invalid port number", Toast.LENGTH_SHORT).show()
-//                        return@setOnCheckedChangeListener
-//                    }
-//                    viewModel.startClient(ip, port)
-//                    binding?.ipAddress?.visibility = View.VISIBLE
-//                }
-//                binding?.radioServer?.id -> {
-//                    val portStr = binding?.portNumber?.text.toString()
-//                    val port = portStr.toIntOrNull()
-//                    if (port == null || port !in 1..65535) {
-//                        Toast.makeText(context, "Invalid port number", Toast.LENGTH_SHORT).show()
-//                        return@setOnCheckedChangeListener
-//                    }
-//                    viewModel.startServer(port)
-//                    binding?.ipAddress?.visibility = View.GONE
-//                }
-//            }
-//        }
-
-
         binding?.sendButton?.setOnClickListener {
             val message = binding?.messageEditText?.text.toString()
             if (message.isNotEmpty()) {

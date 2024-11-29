@@ -12,6 +12,11 @@
     <string name="select_image">Select Image</string>
     <string name="user_phone">Phone</string>
     <string name="user_pic">user_pic</string>
+    <string name="play">Play</string>
+    <string name="pause">Pause</string>
+    <string name="stop">Stop</string>
+    <string name="right">►</string>
+    <string name="left">◄</string>
 
 
     <!-- Base application theme. -->

@@ -1,4 +1,4 @@
-package com.transsion.mediaplayerdemo.ui.ViewModel
+package com.transsion.mediaplayerdemo.ui.viewModel
 
 import android.util.Log
 import androidx.lifecycle.LiveData
@@ -52,7 +52,7 @@ class CommunicationViewModel : ViewModel() {
     }
 
     fun receiveMessage(message: String) {
-        Log.d("ViewModel", "Received message: $message")
+        Log.d("viewModel", "Received message: $message")
         addMessageToLiveData(message)
     }
 

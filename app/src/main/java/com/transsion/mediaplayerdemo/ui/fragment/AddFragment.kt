@@ -11,8 +11,8 @@ import androidx.activity.result.contract.ActivityResultContracts
 import com.transsion.mediaplayerdemo.data.database.AppDatabase
 import com.transsion.mediaplayerdemo.data.repository.UserRepository
 import com.transsion.mediaplayerdemo.databinding.FragmentAddBinding
-import com.transsion.mediaplayerdemo.ui.ViewModel.AddViewModel
-import com.transsion.mediaplayerdemo.ui.ViewModel.UserViewModelFactory
+import com.transsion.mediaplayerdemo.ui.viewModel.AddViewModel
+import com.transsion.mediaplayerdemo.ui.viewModel.UserViewModelFactory
 class AddFragment : Fragment() {
 
     private var _binding: FragmentAddBinding? = null
