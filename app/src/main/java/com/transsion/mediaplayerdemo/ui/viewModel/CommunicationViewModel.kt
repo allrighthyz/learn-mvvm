@@ -11,6 +11,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class CommunicationViewModel : ViewModel() {
+
     private val _messages = MutableLiveData<MutableList<String>>()
     val messages: LiveData<MutableList<String>> = _messages
 
@@ -35,12 +36,9 @@ class CommunicationViewModel : ViewModel() {
     }
 
     fun sendMessage(message: String) {
-        viewModelScope.launch(Dispatchers.IO) { // 在后台线程上执行
-            if (serverCommunication != null) {
-                serverCommunication?.sendMessage(message)
-            } else if (clientCommunication != null) {
-                clientCommunication?.sendMessage(message)
-            }
+        viewModelScope.launch(Dispatchers.IO) {
+            serverCommunication?.sendMessage(message)
+            clientCommunication?.sendMessage(message)
         }
         addMessageToLiveData(message)
     }

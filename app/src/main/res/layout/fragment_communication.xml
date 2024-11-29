@@ -1,105 +1,91 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ui.fragment.CommunicationFragment">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <LinearLayout
+    <data>
+        <variable
+            name="viewModel"
+            type="com.transsion.mediaplayerdemo.ui.viewModel.CommunicationViewModel" />
+        <variable
+            name="fragment"
+            type="com.transsion.mediaplayerdemo.ui.fragment.CommunicationFragment" />
+    </data>
+
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:padding="16dp"
-        tools:ignore="UselessParent">
+        tools:context=".ui.fragment.CommunicationFragment">
 
         <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-            <!-- Existing EditText for IP address -->
-<!--            android:visibility="gone"-->
-            <EditText
-                android:id="@+id/ipAddress"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:autofillHints=""
-                android:hint="Enter Server IP Address"
-                android:inputType="text" />
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="16dp"
+            tools:ignore="UselessParent">
 
-            <!-- Existing EditText for port number -->
-            <EditText
-                android:id="@+id/portNumber"
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:autofillHints=""
-                android:hint="Enter Port"
-                android:inputType="number"/>
+                android:orientation="horizontal">
 
-        </LinearLayout>
+                <EditText
+                    android:id="@+id/ipAddress"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Enter Server IP Address"
+                    android:inputType="text" />
 
-        <!-- Existing Button for starting server -->
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-<!--            <RadioGroup-->
-<!--                android:id="@+id/radioGroup"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:orientation="horizontal">-->
+                <EditText
+                    android:id="@+id/portNumber"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:hint="Enter Port"
+                    android:inputType="number" />
 
-<!--                <RadioButton-->
-<!--                    android:id="@+id/radioClient"-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:text="Start Client" />-->
+            </LinearLayout>
 
-<!--                <RadioButton-->
-<!--                    android:id="@+id/radioServer"-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:text="Start Server" />-->
-<!--            </RadioGroup>-->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
 
-            <Button
-                android:id="@+id/startClientButton"
+                <Button
+                    android:id="@+id/startClientButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Start Client"
+                    android:onClick="@{() -> fragment.onClientButtonClicked()}"/>
+
+                <Button
+                    android:id="@+id/startServerButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Start Server"
+                    android:onClick="@{() -> fragment.onServerButtonClicked()}"/>
+
+            </LinearLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/chatRecyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:scrollbars="vertical" />
+
+            <EditText
+                android:id="@+id/messageEditText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Start Client" />
+                android:hint="Type a message" />
 
             <Button
-                android:id="@+id/startServerButton"
-                android:layout_width="match_parent"
+                android:id="@+id/sendButton"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Start Server" />
-
+                android:text="Send"
+                android:onClick="@{() -> fragment.onSendButtonClicked()}"/>
         </LinearLayout>
 
-        <!-- Existing Button for starting client -->
-
-        <!-- RecyclerView for displaying chat messages -->
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/chatRecyclerView"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:scrollbars="vertical"/>
-
-        <!-- EditText for inputting chat messages -->
-        <EditText
-            android:id="@+id/messageEditText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.1"
-            android:hint="Type a message"/>
-
-        <!-- Button for sending chat messages -->
-        <Button
-            android:id="@+id/sendButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Send"/>
-    </LinearLayout>
-
-</FrameLayout>
+    </FrameLayout>
+</layout>

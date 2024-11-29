@@ -6,8 +6,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.transsion.mediaplayerdemo.R
 import com.transsion.mediaplayerdemo.ui.viewModel.CommunicationViewModel
 import com.transsion.mediaplayerdemo.adapter.MessageAdapter
 import com.transsion.mediaplayerdemo.databinding.FragmentCommunicationBinding
@@ -22,55 +24,55 @@ class CommunicationFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentCommunicationBinding.inflate(inflater, container, false)
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_communication, container, false)
+        viewModel = ViewModelProvider(this)[CommunicationViewModel::class.java]
+        binding?.viewModel = viewModel
+        binding?.lifecycleOwner = viewLifecycleOwner
         return binding?.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        // Initialize viewModel
-        viewModel = ViewModelProvider(this)[CommunicationViewModel::class.java]
 
-        // Setup RecyclerView with View Binding
         binding?.chatRecyclerView?.layoutManager = LinearLayoutManager(context)
         binding?.chatRecyclerView?.adapter = messageAdapter
 
-        // Observe LiveData from viewModel
         viewModel.messages.observe(viewLifecycleOwner) { messages ->
             messages?.let {
                 messageAdapter.updateMessages(it)
                 binding?.chatRecyclerView?.scrollToPosition(it.size - 1)
             }
         }
+    }
 
-        binding?.startServerButton?.setOnClickListener {
-            val portStr = binding?.portNumber?.text.toString()
-            val port = portStr.toIntOrNull()
-            if (port == null || port !in 1..65535) {
-                Toast.makeText(context, "Invalid port number", Toast.LENGTH_SHORT).show()
-                return@setOnClickListener
-            }
-            viewModel.startServer(port)
-            binding?.ipAddress?.visibility = View.GONE
+    fun onServerButtonClicked() {
+        val portStr = binding?.portNumber?.text.toString()
+        val port = portStr.toIntOrNull()
+        if (port == null || port !in 1..65535) {
+            Toast.makeText(context, "Invalid port number", Toast.LENGTH_SHORT).show()
+            return
         }
+        viewModel.startServer(port)
+        binding?.ipAddress?.visibility = View.GONE
+    }
 
-        binding?.startClientButton?.setOnClickListener {
-            val ip = binding?.ipAddress?.text.toString()
-            val portStr = binding?.portNumber?.text.toString()
-            val port = portStr.toIntOrNull()
-            if (port == null || port !in 1..65535) {
-                Toast.makeText(context, "Invalid port number", Toast.LENGTH_SHORT).show()
-                return@setOnClickListener
-            }
-            viewModel.startClient(ip, port)
-            binding?.ipAddress?.visibility = View.VISIBLE
+    fun onClientButtonClicked() {
+        val ip = binding?.ipAddress?.text.toString()
+        val portStr = binding?.portNumber?.text.toString()
+        val port = portStr.toIntOrNull()
+        if (port == null || port !in 1..65535) {
+            Toast.makeText(context, "Invalid port number", Toast.LENGTH_SHORT).show()
+            return
         }
-        binding?.sendButton?.setOnClickListener {
-            val message = binding?.messageEditText?.text.toString()
-            if (message.isNotEmpty()) {
-                viewModel.sendMessage(message)
-                binding?.messageEditText?.text?.clear()
-            }
+        viewModel.startClient(ip, port)
+        binding?.ipAddress?.visibility = View.VISIBLE
+    }
+
+    fun onSendButtonClicked() {
+        val message = binding?.messageEditText?.text.toString()
+        if (message.isNotEmpty()) {
+            viewModel.sendMessage(message)
+            binding?.messageEditText?.text?.clear()
         }
     }
 
