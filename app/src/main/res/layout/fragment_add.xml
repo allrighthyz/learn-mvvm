@@ -1,63 +1,86 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".ui.fragment.AddFragment"
-    android:padding="16dp">
-    <LinearLayout
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="viewModel"
+            type="com.transsion.mediaplayerdemo.ui.viewModel.AddViewModel" />
+    </data>
+
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:padding="20dp"
-        tools:ignore="UselessParent">
-        <ImageView
-            android:id="@+id/avatarImageView"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layout_gravity="center"
-            android:contentDescription="@string/user_pic"
-            android:src="@android:drawable/ic_input_add" />
+        android:padding="16dp"
+        tools:context=".ui.fragment.AddFragment">
 
-        <Button
-            android:id="@+id/selectImageButton"
-            android:layout_width="150dp"
-            android:layout_height="50dp"
-            android:layout_gravity="center"
-            android:text="@string/select_image" />
-
-        <EditText
-            android:id="@+id/nameEditText"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:autofillHints="username"
-            android:hint="@string/user_name"
-            android:inputType="textPersonName" />
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="20dp"
+            tools:ignore="UselessParent">
 
-        <EditText
-            android:id="@+id/emailEditText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:autofillHints="email"
-            android:hint="@string/user_email"
-            android:inputType="textEmailAddress" />
+            <ImageView
+                android:id="@+id/avatarImageView"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_gravity="center"
+                android:contentDescription="@string/user_pic"
+                android:src="@android:drawable/ic_input_add" />
 
-        <EditText
-            android:id="@+id/phoneEditText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:autofillHints="phone"
-            android:hint="@string/user_phone"
-            android:inputType="phone" />
+            <Button
+                android:id="@+id/selectImageButton"
+                android:layout_width="150dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center"
+                android:text="@string/select_image"
+                android:onClick="@{() -> viewModel.onSelectImageClick()}" />
 
-        <Button
-            android:id="@+id/addUserButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="@string/add" />
+            <EditText
+                android:id="@+id/nameEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:autofillHints="username"
+                android:hint="@string/user_name"
+                android:inputType="textPersonName"
+                android:text="@={viewModel.name}" />
 
-    </LinearLayout>
+            <EditText
+                android:id="@+id/emailEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:autofillHints="email"
+                android:hint="@string/user_email"
+                android:inputType="textEmailAddress"
+                android:text="@={viewModel.email}" />
 
-</FrameLayout>
+            <EditText
+                android:id="@+id/phoneEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:autofillHints="phone"
+                android:hint="@string/user_phone"
+                android:inputType="phone"
+                android:text="@={viewModel.phone}" />
+
+            <Button
+                android:id="@+id/addUserButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="@string/add"
+                android:onClick="@{() -> viewModel.onAddUserClick()}" />
+
+            <Button
+                android:id="@+id/picShowButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="@string/pic_show" />
+
+        </LinearLayout>
+
+    </FrameLayout>
+
+</layout>
