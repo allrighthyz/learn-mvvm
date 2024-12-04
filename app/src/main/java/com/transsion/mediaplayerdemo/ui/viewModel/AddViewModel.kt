@@ -23,7 +23,7 @@ class AddViewModel(private val repository: UserRepository) : ViewModel() {
     val phone = MutableLiveData<String>()
     var avatarUri: Uri? = null
 
-    fun insertUser() {
+    private fun insertUser() {
         val user = User(
             name = name.value ?: "",
             email = email.value ?: "",
@@ -48,5 +48,9 @@ class AddViewModel(private val repository: UserRepository) : ViewModel() {
         }
         // 插入用户
         insertUser()
+    }
+
+    fun showGallery(){
+
     }
 }

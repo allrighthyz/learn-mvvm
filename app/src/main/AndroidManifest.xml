@@ -14,9 +14,10 @@
     <uses-permission android:name="android.permission.INTERNET" /> <!-- ACCESS_NETWORK_STATE -->
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" /> <!-- ACCESS_WIFI_STATE -->
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" /> <!-- ACCESS_NETWORK_STATE -->
-    <uses-permission android:name="android.permission.BIND_QUICK_SETTINGS_TILE"
+    <uses-permission
+        android:name="android.permission.BIND_QUICK_SETTINGS_TILE"
         tools:ignore="ProtectedPermissions" />
-    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
 
     <application
         android:allowBackup="true"
@@ -29,14 +30,16 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MediaPlayerDemo"
         tools:targetApi="tiramisu">
-
+        <activity
+            android:name=".ui.activity.SmallGalleryActivity"
+            android:exported="false" />
         <activity
             android:name=".ui.activity.BatteryDialogActivity"
-            android:theme="@style/Theme.Transparent"
             android:excludeFromRecents="true"
-            android:taskAffinity=""
+            android:finishOnTaskLaunch="true"
             android:launchMode="singleTask"
-            android:finishOnTaskLaunch="true"/>
+            android:taskAffinity=""
+            android:theme="@style/Theme.Transparent" />
 
         <service
             android:name=".service.IconService"
