@@ -65,6 +65,7 @@ dependencies {
     implementation(libs.androidx.room.ktx)
     implementation(libs.androidx.databinding.runtime)
     implementation(libs.activity)
+    implementation(libs.testng)
 //    implementation(libs.androidx.library)
     //noinspection KaptUsageInsteadOfKsp
     kapt(libs.androidx.room.compiler)

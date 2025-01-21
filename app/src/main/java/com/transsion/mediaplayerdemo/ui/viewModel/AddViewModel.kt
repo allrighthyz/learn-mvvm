@@ -1,6 +1,7 @@
 package com.transsion.mediaplayerdemo.ui.viewModel
 
 import android.net.Uri
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -51,6 +52,6 @@ class AddViewModel(private val repository: UserRepository) : ViewModel() {
     }
 
     fun showGallery(){
-
+     Log.d("show","show")
     }
 }

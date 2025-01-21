@@ -19,6 +19,7 @@ databinding = "8.7.2"
 library = "3.2.0-alpha11"
 androidxJunit = "1.2.1"
 activityVersion = "1.9.3"
+testng = "6.9.6"
 
 [libraries]
 androidx-appcompat = { module = "androidx.appcompat:appcompat", version.ref = "appcompat" }
@@ -42,6 +43,7 @@ androidx-activity = { module = "androidx.activity:activity-ktx", version.ref = "
 androidx-constraintlayout = { module = "androidx.constraintlayout:constraintlayout", version.ref = "constraintlayout" }
 androidx-databinding-runtime = { module = "androidx.databinding:databinding-runtime", version.ref = "databinding" }
 activity = { group = "androidx.activity", name = "activity", version.ref = "activityVersion" }
+testng = { group = "org.testng", name = "testng", version.ref = "testng" }
 #coreKtx
 
 [plugins]

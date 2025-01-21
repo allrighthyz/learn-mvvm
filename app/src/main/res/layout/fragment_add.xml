@@ -40,7 +40,7 @@
             <EditText
                 android:id="@+id/nameEditText"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="48dp"
                 android:autofillHints="username"
                 android:hint="@string/user_name"
                 android:inputType="textPersonName"
@@ -49,7 +49,7 @@
             <EditText
                 android:id="@+id/emailEditText"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="48dp"
                 android:autofillHints="email"
                 android:hint="@string/user_email"
                 android:inputType="textEmailAddress"
@@ -58,7 +58,7 @@
             <EditText
                 android:id="@+id/phoneEditText"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="48dp"
                 android:autofillHints="phone"
                 android:hint="@string/user_phone"
                 android:inputType="phone"
@@ -78,7 +78,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:text="@string/pic_show"
-                android:onClick="@{()->viewModel.showGallery}"/>
+                android:onClick="@{() -> viewModel.showGallery()}"/>
 
         </LinearLayout>
 
